@@ -4,17 +4,14 @@ set -e
 if [ "$#" -ne 1 ]; then
   echo -e "usage: $0 <destination_directory>"
   echo -e "examples: "
-  echo -e "  $0 /usr/share/fonts/Microsoft/TrueType/SegoeUI/"
-  echo -e "  $0 \$HOME/.local/share/fonts/Microsoft/TrueType/SegoeUI/"
-  echo -e "  $0 \$HOME/.wine/drive_c/windows/Fonts/"
-  echo -e "  $0 \$WINEPREFIX/drive_c/windows/Fonts/"
+  echo -e "  $0 \"\$WINEPREFIX/drive_c/windows/Fonts/\""
   exit 1
 fi
 
 SCR_DIR=$(dirname "$(realpath "$0")")
 DST_DIR=$1
 if [ ! -d "$DST_DIR" ]; then
-  echo "error: destination dir does not exist: $DST_DIR" >&2
+  echo -e "error: destination directory does not exist: $DST_DIR" >&2
   exit 1
 fi
 

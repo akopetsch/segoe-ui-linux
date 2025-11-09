@@ -1,30 +1,35 @@
 #!/bin/bash
+set -e
 
-# print usage?
 if [ "$#" -ne 1 ]; then
-    echo -e "Usage: $0 <destination_directory>"
-    echo -e "Examples: "
-    echo -e "  $0 /usr/share/fonts/Microsoft/TrueType/SegoeUI/"
-    echo -e "  $0 \$HOME/.local/share/fonts/Microsoft/TrueType/SegoeUI/"
-    echo -e "  $0 \$HOME/.wine/drive_c/windows/Fonts/"
-    echo -e "  $0 \$WINEPREFIX/drive_c/windows/Fonts/"
-    exit 1
+  echo -e "usage: $0 <destination_directory>"
+  echo -e "examples: "
+  echo -e "  $0 /usr/share/fonts/Microsoft/TrueType/SegoeUI/"
+  echo -e "  $0 \$HOME/.local/share/fonts/Microsoft/TrueType/SegoeUI/"
+  echo -e "  $0 \$HOME/.wine/drive_c/windows/Fonts/"
+  echo -e "  $0 \$WINEPREFIX/drive_c/windows/Fonts/"
+  exit 1
 fi
 
-DEST_DIR=$1
+SCR_DIR=$(dirname "$(realpath "$0")")
+DST_DIR=$1
+if [ ! -d "$DST_DIR" ]; then
+  echo "error: destination dir does not exist: $DST_DIR" >&2
+  exit 1
+fi
 
-cp font/segoeui.ttf "$DEST_DIR"/segoeui.ttf      # regular
-cp font/segoeuib.ttf "$DEST_DIR"/segoeuib.ttf    # bold
-cp font/segoeuii.ttf "$DEST_DIR"/segoeuii.ttf    # italic
-cp font/segoeuiz.ttf "$DEST_DIR"/segoeuiz.ttf    # bold italic
-cp font/segoeuil.ttf "$DEST_DIR"/segoeuil.ttf    # light
-cp font/seguili.ttf "$DEST_DIR"/seguili.ttf      # light italic
-cp font/segoeuisl.ttf "$DEST_DIR"/segoeuisl.ttf  # semilight
-cp font/seguisli.ttf "$DEST_DIR"/seguisli.ttf    # semilight italic
-cp font/seguisb.ttf "$DEST_DIR"/seguisb.ttf      # semibold
-cp font/seguisbi.ttf "$DEST_DIR"/seguisbi.ttf    # semibold italic
-cp font/seguibl.ttf "$DEST_DIR"/seguibl.ttf      # bold light
-cp font/seguibli.ttf "$DEST_DIR"/seguibli.ttf    # bold light italic
-cp font/seguiemj.ttf "$DEST_DIR"/seguiemj.ttf    # emoji
-cp font/seguisym.ttf "$DEST_DIR"/seguisym.ttf    # symbol
-cp font/seguihis.ttf "$DEST_DIR"/seguihis.ttf    # historic
+cp "$SCR_DIR/font/segoeui.ttf"    "$DST_DIR" # regular
+cp "$SCR_DIR/font/segoeuib.ttf"   "$DST_DIR" # bold
+cp "$SCR_DIR/font/segoeuii.ttf"   "$DST_DIR" # italic
+cp "$SCR_DIR/font/segoeuiz.ttf"   "$DST_DIR" # bold italic
+cp "$SCR_DIR/font/segoeuil.ttf"   "$DST_DIR" # light
+cp "$SCR_DIR/font/seguili.ttf"    "$DST_DIR" # light italic
+cp "$SCR_DIR/font/segoeuisl.ttf"  "$DST_DIR" # semilight
+cp "$SCR_DIR/font/seguisli.ttf"   "$DST_DIR" # semilight italic
+cp "$SCR_DIR/font/seguisb.ttf"    "$DST_DIR" # semibold
+cp "$SCR_DIR/font/seguisbi.ttf"   "$DST_DIR" # semibold italic
+cp "$SCR_DIR/font/seguibl.ttf"    "$DST_DIR" # bold light
+cp "$SCR_DIR/font/seguibli.ttf"   "$DST_DIR" # bold light italic
+cp "$SCR_DIR/font/seguiemj.ttf"   "$DST_DIR" # emoji
+cp "$SCR_DIR/font/seguisym.ttf"   "$DST_DIR" # symbol
+cp "$SCR_DIR/font/seguihis.ttf"   "$DST_DIR" # historic
